@@ -3109,6 +3109,208 @@ body.dark-mode .login-expand-toggle small{color:#7f93a6}
   .login-alt-card::before{animation:none;transform:translate(-50%,-50%) rotate(18deg)}
 }
 
+/* v0.48 — entrada progresiva y tema nocturno azul-negro */
+.login-screen.login-leaving{pointer-events:none;animation:loginSessionLeave .13s ease both}
+.login-alt-primary.is-loading,[data-demo-user].is-loading{cursor:wait;opacity:.88}
+.login-alt-primary.is-loading{display:flex;align-items:center;justify-content:center;gap:8px}
+.login-alt-primary.is-loading::before{
+  content:"";width:12px;height:12px;border:2px solid rgba(255,255,255,.42);border-top-color:#fff;
+  border-radius:50%;animation:loginButtonSpin .55s linear infinite
+}
+
+#appShell.app-entering .sidebar{animation:appSidebarEnter .24s cubic-bezier(.22,.61,.36,1) both}
+#appShell.app-entering .compact-topbar,
+#appShell.app-entering .wavebar{animation:appChromeEnter .26s .04s cubic-bezier(.22,.61,.36,1) both}
+#appShell.app-entering .view.active>.page-head,
+#appShell.app-entering .view.active>.portal-hero{animation:dashboardSurfaceEnter .3s .07s cubic-bezier(.22,.61,.36,1) both}
+#appShell.app-entering #dashboard>.security-banner{animation:dashboardSurfaceEnter .28s .1s ease both}
+#appShell.app-entering #dashboard .kpi{opacity:0;animation:dashboardCardEnter .26s cubic-bezier(.22,.61,.36,1) forwards}
+#appShell.app-entering #dashboard .kpi:nth-child(1){animation-delay:.10s}
+#appShell.app-entering #dashboard .kpi:nth-child(2){animation-delay:.13s}
+#appShell.app-entering #dashboard .kpi:nth-child(3){animation-delay:.16s}
+#appShell.app-entering #dashboard .kpi:nth-child(4){animation-delay:.19s}
+#appShell.app-entering #dashboard .kpi:nth-child(5){animation-delay:.22s}
+#appShell.app-entering #dashboard .kpi:nth-child(6){animation-delay:.25s}
+#appShell.app-entering #dashboard .dashboard-attention{animation:dashboardSurfaceEnter .28s .26s ease both}
+#appShell.app-entering #dashboard>.grid .card{opacity:0;animation:dashboardCardEnter .3s cubic-bezier(.22,.61,.36,1) forwards}
+#appShell.app-entering #dashboard>.grid .card:nth-child(1){animation-delay:.30s}
+#appShell.app-entering #dashboard>.grid .card:nth-child(2){animation-delay:.35s}
+#appShell.app-entering #ticketChart .bar{transform-origin:center bottom;animation:dashboardChartGrow .28s .34s cubic-bezier(.22,.61,.36,1) both}
+#appShell.app-entering #ticketChart .cg:nth-child(2) .bar{animation-delay:.38s}
+#appShell.app-entering #ticketChart .cg:nth-child(3) .bar{animation-delay:.42s}
+#appShell.app-entering #ticketChart .cg:nth-child(4) .bar{animation-delay:.46s}
+#appShell.app-entering #ticketChart .cg:nth-child(5) .bar{animation-delay:.50s}
+#appShell.app-entering #ticketChart .cg:nth-child(n+6) .bar{animation-delay:.54s}
+
+@keyframes loginSessionLeave{to{opacity:0;transform:translateY(-10px) scale(.99);filter:blur(4px)}}
+@keyframes loginButtonSpin{to{transform:rotate(360deg)}}
+@keyframes appSidebarEnter{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:translateX(0)}}
+@keyframes appChromeEnter{from{opacity:0;transform:translateY(-9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dashboardSurfaceEnter{
+  from{opacity:0;transform:translateY(16px) scale(.99);filter:blur(4px)}
+  to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes dashboardCardEnter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dashboardChartGrow{from{opacity:0;transform:scaleY(.05)}to{opacity:1;transform:scaleY(1)}}
+@media(max-width:850px){#appShell.app-entering .sidebar{animation:none}}
+
+body.theme-transitioning,
+body.theme-transitioning .app-main,
+body.theme-transitioning .content,
+body.theme-transitioning .sidebar,
+body.theme-transitioning .compact-topbar,
+body.theme-transitioning .login-alt-screen,
+body.theme-transitioning .login-alt-card::after,
+body.theme-transitioning .card,
+body.theme-transitioning .kpi,
+body.theme-transitioning .stat,
+body.theme-transitioning input,
+body.theme-transitioning select,
+body.theme-transitioning textarea,
+body.theme-transitioning button,
+body.theme-transitioning table,
+body.theme-transitioning th,
+body.theme-transitioning td,
+body.theme-transitioning .ticket-preview-drawer,
+body.theme-transitioning .attachment-viewer,
+body.theme-transitioning .modal-card{
+  transition:background-color .28s ease,border-color .28s ease,color .28s ease,box-shadow .28s ease!important
+}
+
+body.dark-mode{
+  --blue:#4f7cff;
+  --dark-bg:#0b0f19;
+  --dark-surface:#151b29;
+  --dark-surface-2:#192131;
+  --dark-surface-3:#1d2738;
+  --dark-border:#252b3a;
+  --dark-border-soft:#222c3c;
+  --dark-text:#e5e7eb;
+  --dark-text-soft:#c2cad6;
+  --dark-muted:#94a3b8;
+  --dark-blue:#93b0ff;
+  background:#0b0f19;color:#e5e7eb;color-scheme:dark
+}
+body.dark-mode .app-main,
+body.dark-mode .content{background:#0b0f19}
+body.dark-mode .sidebar{background:#101522;border-color:#252b3a;box-shadow:10px 0 34px rgba(0,0,0,.16)}
+body.dark-mode .compact-topbar{background:#101522;border-color:#252b3a;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+body.dark-mode .wavebar{background:linear-gradient(90deg,#1f4fd0,#3d65d8 56%,#1a2440);opacity:.7}
+
+body.dark-mode .card,
+body.dark-mode .kpi,
+body.dark-mode .stat,
+body.dark-mode .dashboard-attention,
+body.dark-mode .attention-item,
+body.dark-mode .attention-mini,
+body.dark-mode .analytics-card,
+body.dark-mode .analytics-kpi,
+body.dark-mode .ticket-card,
+body.dark-mode .ticket-inbox,
+body.dark-mode .kb-side,
+body.dark-mode .kb-main,
+body.dark-mode .service-card,
+body.dark-mode .catalog-admin-panel,
+body.dark-mode .rule-card,
+body.dark-mode .rule-editor,
+body.dark-mode .rule-test,
+body.dark-mode .incident-kpi,
+body.dark-mode .major-card,
+body.dark-mode .problem-kpi,
+body.dark-mode .problem-card,
+body.dark-mode .problem-detail,
+body.dark-mode .problem-form,
+body.dark-mode .auto-summary,
+body.dark-mode .similar-panel,
+body.dark-mode .history-card,
+body.dark-mode .assistant-panel,
+body.dark-mode .control-panel,
+body.dark-mode .ticket-public-status,
+body.dark-mode .group-card,
+body.dark-mode .security-banner{
+  background:#151b29;border-color:#252b3a;color:#e5e7eb;box-shadow:0 8px 24px rgba(0,0,0,.22)
+}
+body.dark-mode .card:hover,
+body.dark-mode .dashboard-kpi:hover,
+body.dark-mode .analytics-kpi:hover,
+body.dark-mode .service-card:hover{border-color:#33435c;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+
+body.dark-mode .ticket-commandbar,
+body.dark-mode .ticket-pagination,
+body.dark-mode .ticket-queue-strip,
+body.dark-mode .ticket-filter-chips,
+body.dark-mode .ticket-preview-head,
+body.dark-mode .ticket-preview-footer,
+body.dark-mode .attachment-viewer-head,
+body.dark-mode .attachment-viewer-toolbar,
+body.dark-mode .attachment-viewer-footer,
+body.dark-mode .auto-summary-head,
+body.dark-mode .similar-panel-head,
+body.dark-mode .history-head,
+body.dark-mode .assistant-head,
+body.dark-mode .control-head{background:#192131;border-color:#252b3a}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea,
+body.dark-mode .ticket-search-wrap,
+body.dark-mode .ticket-commandbar select,
+body.dark-mode .ticket-command-btn,
+body.dark-mode .ticket-pagination select,
+body.dark-mode .ticket-pagination button{
+  background:#0f1522!important;border-color:#2c3749!important;color:#e5e7eb!important
+}
+body.dark-mode input:focus,
+body.dark-mode select:focus,
+body.dark-mode textarea:focus{border-color:#4f7cff!important;box-shadow:0 0 0 3px rgba(79,124,255,.14)!important}
+body.dark-mode input::placeholder,body.dark-mode textarea::placeholder{color:#65748a}
+
+body.dark-mode .ticket-pro-table,
+body.dark-mode .table-wrap,
+body.dark-mode table{background:#151b29;color:#dce3ec}
+body.dark-mode .ticket-pro-table th,body.dark-mode th{background:#192131;border-color:#2a3444;color:#aeb9c8}
+body.dark-mode .ticket-pro-table thead th:nth-child(-n+3){background:#1d2738}
+body.dark-mode .ticket-pro-table td,body.dark-mode td{background:#151b29;border-color:#252f3e;color:#d1d8e2}
+body.dark-mode .ticket-pro-table tbody tr:hover td,body.dark-mode tr:hover td{background:#1a2333}
+body.dark-mode .ticket-pro-table tbody tr.unread-row td{background:#172235}
+body.dark-mode .ticket-pro-table tbody tr.selected-row td{background:#1b2d4d}
+
+body.dark-mode .ticket-preview-drawer,
+body.dark-mode .attachment-viewer,
+body.dark-mode .modal-card{background:#151b29;border-color:#2a3444;box-shadow:0 28px 70px rgba(0,0,0,.5)}
+body.dark-mode .ticket-preview-summary>div,
+body.dark-mode .ticket-preview-message,
+body.dark-mode .ticket-indicator-list-item,
+body.dark-mode .ticket-indicator-empty,
+body.dark-mode .ticket-attachment-open,
+body.dark-mode .attachment-viewer-missing,
+body.dark-mode .member-chip,
+body.dark-mode .denied-box{background:#111827;border-color:#2a3444;color:#dce4ee}
+body.dark-mode .conversation .message.internal{background:#221d15!important;border-color:#554329}
+
+body.dark-mode .page-head p,
+body.dark-mode .chart-head small,
+body.dark-mode .ticket-submeta span,
+body.dark-mode .ticket-card-meta,
+body.dark-mode .text-secondary{color:#94a3b8!important}
+body.dark-mode .ticket-id-link,
+body.dark-mode .link,
+body.dark-mode a{color:#9ab4ff}
+body.dark-mode .bar{background:linear-gradient(180deg,#6d91ff,#345fd4);box-shadow:0 0 15px rgba(79,124,255,.18)}
+body.dark-mode .chart{border-color:#293446;background:linear-gradient(180deg,rgba(79,124,255,.035),transparent)}
+
+@media(prefers-reduced-motion:reduce){
+  .login-screen.login-leaving,
+  #appShell.app-entering .sidebar,
+  #appShell.app-entering .compact-topbar,
+  #appShell.app-entering .wavebar,
+  #appShell.app-entering .view.active>*,
+  #appShell.app-entering #dashboard .kpi,
+  #appShell.app-entering #dashboard>.grid .card,
+  #appShell.app-entering #ticketChart .bar{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
+  body.theme-transitioning *{transition:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -4398,8 +4600,14 @@ function applyTheme(theme){
 
  storeTheme(theme);
 }
+let themeTransitionTimer=null;
+function prefersReducedMotion(){return !!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)}
+function waitForUi(ms){return new Promise(resolve=>window.setTimeout(resolve,ms))}
 function toggleTheme(){
+ if(!prefersReducedMotion())document.body.classList.add("theme-transitioning");
  applyTheme(document.body.classList.contains("dark-mode")?"light":"dark");
+ window.clearTimeout(themeTransitionTimer);
+ themeTransitionTimer=window.setTimeout(()=>document.body.classList.remove("theme-transitioning"),340);
 }
 
 function setLoginCardExpanded(expanded,{pinned=null}={}){
@@ -5584,7 +5792,7 @@ function simulateADLogin(){
  }
  // Prototype only: password is intentionally not validated or stored.
  const key=resolveRoleFromAD(username);
- login(key);
+ login(key,document.getElementById("adLoginBtn"));
 }
 
 
@@ -5594,7 +5802,7 @@ function loginLocalAdmin(){
  admin.name=typedName;
  admin.initials=typedName.split(/\s+/).slice(0,2).map(x=>x[0]||"").join("").toUpperCase() || "AD";
  admin.authSource="Local";
- login("admin");
+ login("admin",document.getElementById("localAdminLoginBtn"));
 }
 
 function selectLoginTab(tab){
@@ -5603,21 +5811,65 @@ function selectLoginTab(tab){
  document.getElementById("loginTabLocalAdmin").classList.toggle("hidden",tab!=="localAdmin");
 }
 
-function login(key){
- session=users[key];
- resetLoginCardExpansion();
- tickets.forEach(syncApprovalFromMessages);
- viewHistory=[];currentView="";previousView=session.role==="Usuario final"?"portal":"dashboard";document.getElementById("loginScreen").classList.add("hidden");document.getElementById("appShell").classList.remove("hidden");
- document.getElementById("sessionName").textContent=session.name;document.getElementById("sessionRole").textContent=session.role;document.getElementById("sessionGroup").textContent=session.group||"";document.getElementById("sessionAuth").textContent=session.authSource==="Local"?"Acceso local":(session.adUser?"AD: "+session.adUser:"");
- document.getElementById("sideAvatar").textContent=session.initials||"U";
- document.getElementById("localAdminSettingsBtn").classList.toggle("hidden",!session.permissions.admin);
- document.getElementById("topAttentionBtn").classList.toggle("hidden",session.role==="Usuario final");
- updateAttentionUi();
+let loginTransitionBusy=false;
+let appEntranceTimer=null;
+function startAppEntrance(){
+ const shell=document.getElementById("appShell");
+ window.clearTimeout(appEntranceTimer);
+ shell.classList.remove("app-entering");
+ void shell.offsetWidth;
+ shell.classList.add("app-entering");
+ shell.setAttribute("aria-busy","true");
+ appEntranceTimer=window.setTimeout(()=>{
+   shell.classList.remove("app-entering");
+   shell.removeAttribute("aria-busy");
+ },prefersReducedMotion()?30:870);
+}
+async function login(key,triggerButton=null){
+ if(loginTransitionBusy||!users[key])return;
+ const loginScreen=document.getElementById("loginScreen");
+ const appShell=document.getElementById("appShell");
+ const button=triggerButton instanceof HTMLElement?triggerButton:null;
+ const originalButtonHtml=button?button.innerHTML:"";
+ loginTransitionBusy=true;
+ loginScreen.setAttribute("aria-busy","true");
+ if(button){button.disabled=true;button.classList.add("is-loading");button.textContent="Ingresando…"}
 
- restoreSidebarCollapsedState();
- clearSidebarNavSearch(false);
- buildNav();renderDashboardChart("month");
- if(session.role==="Usuario final"){renderPortal();showView("portal")}else{renderRoleDashboard();showView("dashboard")}
+ try{
+   if(!prefersReducedMotion())await waitForUi(50);
+   loginScreen.classList.add("login-leaving");
+   if(!prefersReducedMotion())await waitForUi(130);
+
+   session=users[key];
+   tickets.forEach(syncApprovalFromMessages);
+   viewHistory=[];currentView="";previousView=session.role==="Usuario final"?"portal":"dashboard";
+   document.getElementById("sessionName").textContent=session.name;
+   document.getElementById("sessionRole").textContent=session.role;
+   document.getElementById("sessionGroup").textContent=session.group||"";
+   document.getElementById("sessionAuth").textContent=session.authSource==="Local"?"Acceso local":(session.adUser?"AD: "+session.adUser:"");
+   document.getElementById("sideAvatar").textContent=session.initials||"U";
+   document.getElementById("localAdminSettingsBtn").classList.toggle("hidden",!session.permissions.admin);
+   document.getElementById("topAttentionBtn").classList.toggle("hidden",session.role==="Usuario final");
+   updateAttentionUi();
+
+   restoreSidebarCollapsedState();
+   clearSidebarNavSearch(false);
+   buildNav();
+   renderDashboardChart("month");
+   if(session.role==="Usuario final"){renderPortal();showView("portal")}
+   else{renderRoleDashboard();showView("dashboard")}
+
+   startAppEntrance();
+   loginScreen.classList.add("hidden");
+   loginScreen.classList.remove("login-leaving");
+   loginScreen.removeAttribute("aria-busy");
+   appShell.classList.remove("hidden");
+   resetLoginCardExpansion();
+ }finally{
+   if(button){button.disabled=false;button.classList.remove("is-loading");button.innerHTML=originalButtonHtml}
+   loginTransitionBusy=false;
+   loginScreen.removeAttribute("aria-busy");
+ }
 }
 document.getElementById("adLoginBtn").addEventListener("click",simulateADLogin);
 document.getElementById("localAdminLoginBtn").addEventListener("click",loginLocalAdmin);
@@ -5645,7 +5897,7 @@ document.querySelectorAll("input[id], select[id], textarea[id]").forEach(field=>
 });
 applyTheme(getStoredTheme());
 
-document.querySelectorAll("[data-demo-user]").forEach(b=>b.addEventListener("click",()=>login(b.dataset.demoUser)));
+document.querySelectorAll("[data-demo-user]").forEach(b=>b.addEventListener("click",()=>login(b.dataset.demoUser,b)));
 
 const loginHoverCard=document.getElementById("loginHoverCard");
 const loginExpandToggle=document.getElementById("loginExpandToggle");
@@ -5728,8 +5980,13 @@ document.getElementById("topNewTicket").addEventListener("click",()=>{
 document.getElementById("deniedBack").addEventListener("click",()=>showView(session&&session.role==="Usuario final"?"portal":"dashboard"));
 document.getElementById("logoutBtn").addEventListener("click",()=>{
  session=null;detailTicket=null;currentView="";previousView="dashboard";viewHistory=[];
+ window.clearTimeout(appEntranceTimer);
+ document.getElementById("appShell").classList.remove("app-entering");
+ document.getElementById("appShell").removeAttribute("aria-busy");
  document.getElementById("appShell").classList.add("hidden");
  document.getElementById("loginScreen").classList.remove("hidden");
+ document.getElementById("loginScreen").classList.remove("login-leaving");
+ document.getElementById("loginScreen").removeAttribute("aria-busy");
  document.getElementById("adPassword").value="";
  document.getElementById("sidebar").classList.remove("mobile-open");
  clearSidebarNavSearch(false);
